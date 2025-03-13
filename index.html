@@ -3,38 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hospital 7</title>    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">    
-    <link rel="stylesheet" href="styles.css"
+    <title>Hospital 7</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
+<body class="bg-cover bg-center h-screen flex items-center justify-center" style="background-image: url('background.jpg');">
 
-    <div class="login-container">
-        <div class="login-box">
-            <h2>Hospital 7</h2>
-            <div class="avatar">
-                <img src="user-avatar.png" alt="User Avatar">
-            </div>
-            <h2>Iniciar Sesión</h2>
-            <form method="POST" action="{{ route('login.post') }}">
-                @csrf
-                <div class="input-group">
-                    <i class="fa fa-user"></i>
-                    <input type="text" name="usuario" placeholder="Usuario" required>
-                </div>
-                <div class="input-group">
-                    <i class="fa fa-lock"></i>
-                    <input type="password" name="password" placeholder="Contraseña" required>
-                </div>
-                <button type="submit">Ingresar</button>
-                <a href="#" class="forgot">No tienes cuenta? Registrate aqui</a>
-                <a href="#" class="forgot">¿Olvidaste tu contraseña?</a>
-            </form>
+    <div class="bg-black bg-opacity-60 p-8 rounded-lg text-center w-80 shadow-lg">
+        <h2 class="text-white text-2xl font-semibold mb-4">Hospital 7</h2>
+        <div class="avatar mb-4">
+            <img src="user-avatar.png" alt="User Avatar" class="w-20 h-20 rounded-full mx-auto">
         </div>
+        <h2 class="text-white text-xl font-semibold mb-4">Iniciar Sesión</h2>
+        <form id="loginForm">
+            <div class="input-group mb-4 flex items-center bg-white bg-opacity-20 rounded px-3 py-2">
+                <i class="fa fa-user text-white mr-2"></i>
+                <input type="text" id="usuario" placeholder="Usuario" required class="bg-transparent border-none outline-none text-white w-full">
+            </div>
+            <div class="input-group mb-4 flex items-center bg-white bg-opacity-20 rounded px-3 py-2">
+                <i class="fa fa-lock text-white mr-2"></i>
+                <input type="password" id="password" placeholder="Contraseña" required class="bg-transparent border-none outline-none text-white w-full">
+            </div>
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white py-2 rounded transition duration-300">Ingresar</button>
+            <a href="#" class="forgot block mt-4 text-white text-sm">No tienes cuenta? Registrate aqui</a>
+            <a href="#" class="forgot block mt-2 text-white text-sm">¿Olvidaste tu contraseña?</a>
+        </form>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const usuario = document.getElementById('usuario').value;
+            const password = document.getElementById('password').value;
+
+            if (usuario === 'admin@hospital.com' && password === 'admin123') {
+                window.location.href = 'home.html';
+            } else {
+                alert('Credenciales incorrectas');
+            }
+        });
+    </script>
 </body>
 </html>
